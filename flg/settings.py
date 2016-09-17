@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for flg project.
 
@@ -15,7 +16,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -26,7 +26,6 @@ SECRET_KEY = 'cl+17tlv2el7yaibnes@8w57qa#66ia8k9*!0%(h@w-^3e49m^'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,25 +72,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'flg.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
-#}
+# }
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'django-flg',
-         'USER': 'andesm',
-         'PASSWORD' : 'AkdiJ352o',
-         'HOST' : '127.0.0.1',
-         'PORT' : 5432,
-     }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django-flg',
+        'USER': 'andesm',
+        'PASSWORD': 'AkdiJ352o',
+        'HOST': '127.0.0.1',
+        'PORT': 5432,
+    }
 }
 
 # Password validation
@@ -112,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -125,7 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
