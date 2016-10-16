@@ -1,10 +1,12 @@
+# coding=utf-8
 from django.db import models
+
 
 # Create your models here.
 
 class Rmp(models.Model):
     owner = models.ForeignKey('auth.User', related_name='rmps')
-    
+
     site = models.URLField()
     file = models.CharField(max_length=400)
 
@@ -24,4 +26,3 @@ class Rmp(models.Model):
     skip = models.IntegerField(default=0)
     repeat = models.IntegerField(default=0)
     score = models.IntegerField(default=0)
-
