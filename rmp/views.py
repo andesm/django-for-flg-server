@@ -19,7 +19,7 @@ class RmpViewSet(viewsets.ModelViewSet):
         if Rmp.objects.filter(file=serializer.validated_data['file']):
             raise ParseError()
         serializer.save(owner=self.request.user)
-    
+
     def get_queryset(self):
         list = Rmp.objects.all()
 
@@ -40,8 +40,9 @@ class RmpViewSet(viewsets.ModelViewSet):
                 break
 
         if rmp_update:
-            list.save()
-            
+            for data in list:
+                data.save()
+
         return list
 
 
