@@ -25,7 +25,7 @@ SECRET_KEY = 'cl+17tlv2el7yaibnes@8w57qa#66ia8k9*!0%(h@w-^3e49m^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.61', 'flg.jp']
 
 # Application definition
 
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'flg.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django-flg',
-        'USER': 'andesm',
-        'PASSWORD': 'AkdiJ352o',
-        'HOST': '127.0.0.1',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'HOST': 'django-postgres',
         'PORT': 5432,
     }
 }
@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Asia/Tokyo'
 
@@ -126,4 +126,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/apps/static/'

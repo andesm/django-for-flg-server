@@ -1,13 +1,12 @@
 # coding=utf-8
 from django.contrib.auth.models import User
 from rest_framework import serializers
-
 from rmp.models import Rmp
 
 
 class RmpSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
-
+    
     class Meta:
         model = Rmp
         fields = ('id', 'owner', 'site', 'file', 'source', 'image', 'genre',

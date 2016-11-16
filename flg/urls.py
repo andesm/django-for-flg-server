@@ -18,6 +18,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^rmp/', include('rmp.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^apps/rmp/', include('rmp.urls')),
+    url(r'^apps/admin/', admin.site.urls),
 ]
