@@ -1,4 +1,7 @@
 <component name="ProjectDictionaryState">
+<<<<<<< HEAD
+  <dictionary name="andesm" />
+=======
   <dictionary name="andesm">
     <words>
       <w>backends</w>
@@ -17,4 +20,5 @@
       <w>yaibnes</w>
     </words>
   </dictionary>
+>>>>>>> ab97c501b4692089598d37930197ca8233b9f23c
 </component>
