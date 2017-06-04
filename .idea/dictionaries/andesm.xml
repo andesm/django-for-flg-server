@@ -1,24 +1,9 @@
 <component name="ProjectDictionaryState">
-<<<<<<< HEAD
-  <dictionary name="andesm" />
-=======
   <dictionary name="andesm">
     <words>
-      <w>backends</w>
-      <w>clickjacking</w>
-      <w>createdb</w>
-      <w>csrf</w>
-      <w>dropdb</w>
-      <w>howto</w>
-      <w>lconf</w>
-      <w>makemigrations</w>
-      <w>postgresql</w>
-      <w>rmps</w>
-      <w>sqlite</w>
-      <w>startproject</w>
-      <w>wsgi</w>
-      <w>yaibnes</w>
+      <w>ddiv</w>
+      <w>dindex</w>
+      <w>dtype</w>
     </words>
   </dictionary>
->>>>>>> ab97c501b4692089598d37930197ca8233b9f23c
 </component>

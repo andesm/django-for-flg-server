@@ -1,0 +1,166 @@
+@charset "utf-8";
+
+table {
+    border-top: 3px #999999 solid;
+    border-left: 3px #999999 solid;
+    border-right: 3px #000000 solid;
+    border-bottom: 3px #000000 solid;
+    border-collapse: separate;
+}
+
+tr td  {
+    border: 1px #000000 solid;
+    border-collapse: separate;
+}
+
+form {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    
+    margin-top: 0px;
+    padding-right: 30px;
+    padding-top: 2px;
+    
+    background: red;
+    border: 1px solid red;
+    border-left: 10px solid red;
+
+    position: relative;
+
+    line-height:1.5;
+    font-weight:bold;
+}
+
+form a {
+    font-weight: bold;
+    background: red;
+    color: white;
+}
+
+form a:hover {
+    font-weight: bold;
+    background: white ;
+    color: red;
+}
+
+form select {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+form input {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+dt.date  {
+    font-weight: bold;
+    text-decoration: none;
+    color:#0B5690;
+
+    padding-left:10px;
+    margin-top: 0px;
+    padding-right: 30px;
+    padding-top: 2px;
+
+    background: #fff0f0;
+    border: 1px solid #f66;
+    border-left: 10px solid #f66;
+    
+    position: relative;
+        
+    line-height:1.5;
+    font-weight:bold;
+    text-indent:4px;
+}
+
+dt.date a {
+    color:#0B5690;
+}
+
+p.title  {
+    font-weight: bold;
+    text-decoration: none;
+    color:#0B5690;
+
+    padding-left:10px;
+    margin-top: 0px;
+    padding-right: 30px;
+    padding-top: 2px;
+
+    background: #f1f9fd;
+    border: 1px solid #3195c3;
+    border-left: 10px solid #3195c3;
+
+    position: relative;
+
+    line-height:1.5;
+    font-weight:bold;
+    text-indent:4px;
+}
+
+p.title a {
+    color:#0B5690;
+}
+
+dt.title  {
+    font-weight: bold;
+    text-decoration: none;
+    color:#0B5690;
+
+    padding-left:10px;
+    margin-top: 0px;
+    padding-right: 30px;
+    padding-top: 2px;
+
+    background: #f1f9fd;
+    border: 1px solid #3195c3;
+    border-left: 10px solid #3195c3;
+
+    position: relative;
+    
+    line-height:1.5;
+    font-weight:bold;
+    text-indent:4px;
+}
+
+dt.title a {
+    color:#0B5690;
+}
+
+dt  {
+    margin-top: 0px;
+    padding-left:10px;
+    padding-right: 30px;
+    padding-top: 2px;
+
+    border-bottom: 1px solid #3195c3;
+    border-left: 10px solid #3195c3;
+
+    position: relative;
+    
+    line-height:1.5;
+    font-weight:bold;
+    text-indent:4px;
+}
+
+dd  {
+    margin-top: 10px;
+}
+
+pre {
+    margin: 1em;
+    padding: 1em;
+    border: 1px dashed #3195C3;
+    background: #eee;
+}
+
+.twitter-tweet-box {
+    display: flex;
+    flex-wrap: wrap;
+    frlex-direction: row;
+}
+
+
+

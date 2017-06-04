@@ -25,7 +25,7 @@ SECRET_KEY = 'cl+17tlv2el7yaibnes@8w57qa#66ia8k9*!0%(h@w-^3e49m^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.61', 'flg.jp']
+ALLOWED_HOSTS = ['localhost', 'flg.jp', 'kotetu.flg.jp']
 
 # Application definition
 
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'rmp.apps.RmpConfig',
+    'diary.apps.DiaryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,12 +76,13 @@ WSGI_APPLICATION = 'flg.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-# }
+#DATABASES = {
+#   'default': {
+#       'ENGINE': 'django.db.backends.sqlite3',
+##       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#       'NAME': '/tmp/db.sqlite3',
+#   }
+#}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -126,4 +128,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = '/flg/srv/http/django/apps/static'
 STATIC_URL = '/apps/static/'
