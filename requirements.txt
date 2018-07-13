@@ -1,0 +1,14 @@
+psycopg2
+djangorestframework
+markdown
+django-filter
+django-extensions
+uwsgi
+PyYAML
+pypandoc
+requests
+requests_oauthlib
+Django
+
+
+

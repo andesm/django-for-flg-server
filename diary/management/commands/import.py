@@ -38,10 +38,12 @@ class Command(BaseCommand):
     def _import_markdown(self, title_id ):
         subtitle_id = {}
         subtitle_id[''] = 0
+        subsubtitle_id = {}
+        subsubtitle_id[''] = 0
         diary = []
         text = ''
         space_skip = False
-        pic_count = subtitle_id_n = 0
+        pic_count = subtitle_id_n = subsubtitle_id_n = 0
         ddiv = False
 
         with open('/home/andesm/data/diary/diary.md') as f:
@@ -52,6 +54,9 @@ class Command(BaseCommand):
                 if subtitle not in subtitle_id:
                     subtitle_id_n = subtitle_id_n + 1
                     subtitle_id[subtitle] = subtitle_id_n
+                if subsubtitle not in subsubtitle_id:
+                    subsubtitle_id_n = subsubtitle_id_n + 1
+                    subsubtitle_id[subsubtitle] = subsubtitle_id_n
 
                 #html = pypandoc.convert(text, 'html', format='markdown+east_asian_line_breaks')
                 html = pypandoc.convert(text, 'html', format='markdown')
@@ -64,6 +69,9 @@ class Command(BaseCommand):
                               'subtitle_id': subtitle_id[subtitle],
                               'subtitle': subtitle,
                               'subtitle_text': subtitle_text,
+                              'subsubtitle_id': subsubtitle_id[subsubtitle],
+                              'subsubtitle': subsubtitle,
+                              'subsubtitle_text': subsubtitle_text,
                               'ddiv': ddiv,
                               'pic_count': pic_count,
                               'text': html})
@@ -84,32 +92,37 @@ class Command(BaseCommand):
                 title = '日々のあれこれ'
                 subtitle = ''
                 subtitle_text = ''
+                subsubtitle = ''
+                subsubtitle_text = ''
                 space_skip = True
                 ddiv = False
             elif m.search(r'^■ ([^:]+) : ([^-]+) (\d+日目) - (.*)'):
                 title = m.group(1)
                 subtitle = m.group(2)
-                subtitle_text = "%s %s - %s" % (m.group(2), m.group(3), m.group(4))
+                subtitle_text = m.group(2)
+                subsubtitle = "%s - %s" % (m.group(3), m.group(4))
+                subsubtitle_text = "%s - %s" % (m.group(3), m.group(4))
                 ddiv = True
-            elif m.search(r'^■ ([^:]+) : ([^=]+) = ([^=]+)'):
+            elif m.search(r'^■ ([^:]+) : ([^=-]+) (=|-) ([^=-]+)'):
                 title = m.group(1)
                 subtitle = m.group(2)
-                subtitle_text = "%s - %s" % (m.group(2), m.group(3))
-                ddiv = False
-            elif m.search(r'^■ ([^:]+) : ([^-]+) - (.*)'):
-                title = m.group(1)
-                subtitle = m.group(2)
-                subtitle_text = "%s - %s" % (m.group(2), m.group(3))
+                subtitle_text = m.group(2)
+                subsubtitle = m.group(4)
+                subsubtitle_text = m.group(4)
                 ddiv = False
             elif m.search(r'^■ ([^:]+) : (.*)'):
                 title = m.group(1)
                 subtitle = m.group(2)
                 subtitle_text = m.group(2)
+                subsubtitle = ''
+                subsubtitle_text = ''
                 ddiv = False
             elif m.search(r'^■ (.*)'):
                 title = m.group(1)
                 subtitle = ''
                 subtitle_text = ''
+                subsubtitle = ''
+                subsubtitle_text = ''
                 ddiv = False
             else:
                 if m.search(r'^!\['):
@@ -153,6 +166,9 @@ class Command(BaseCommand):
                                          'subtitle_id': 0,
                                          'subtitle': '',
                                          'subtitle_text': '',
+                                         'subsubtitle_id': 0,
+                                         'subsubtitle': '',
+                                         'subsubtitle_text': '',
                                          'ddiv': False,
                                          'pic_count': 1,
                                          'text': html}

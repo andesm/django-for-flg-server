@@ -11,60 +11,73 @@
 <body>
 <form>
 <select onChange="top.location.href=value">
-<option value={% url 'diary' 'all' 0 0 0 0 1 %}>-</option>
+<option value={% url 'diary' 'all' 0 0 0 0 0 1 %}>-</option>
 {% for t in title_list %}
 {% if t.id == title_id %}
-<option selected="selected" value={% url 'diary' t.id 0 0 0 0 1 %}>{{ t.title }}</option>
+<option selected="selected" value={% url 'diary' t.id 0 0 0 0 0 1 %}>{{ t.title }}</option>
 {% else %}
-<option value={% url 'diary' t.id 0 0 0 0 1 %}>{{ t.title }}</option>
+<option value={% url 'diary' t.id 0 0 0 0 0 1 %}>{{ t.title }}</option>
 {% endif %}
 {% endfor %}
 </select>
 
 <form>
 <select onChange="top.location.href=value">
-<option value={% url 'diary' title_id 0 0 0 0 1 %}>-</option>
+<option value={% url 'diary' title_id 0 0 0 0 0 1 %}>-</option>
 {% if title_id != 'all' %}
 {% for t in subtitle_list %}
-{{ t.0 }} - {{ subtitle_id }}
 {% if t.0 == subtitle_id %}
-<option selected="selected" value={% url 'diary' title_id t.0 0 0 0 1 %}>{{ t.1 }}</option>
+<option selected="selected" value={% url 'diary' title_id t.0 0 0 0 0 1 %}>{{ t.1 }}</option>
 {% elif t.1 != '' %}
-<option value={% url 'diary' title_id t.0 0 0 0 1 %}>{{ t.1 }}</option>
+<option value={% url 'diary' title_id t.0 0 0 0 0 1 %}>{{ t.1 }}</option>
+{% endif %}
+{% endfor %}
+{% endif %}
+</select>
+
+<form>
+<select onChange="top.location.href=value">
+<option value={% url 'diary' title_id subtitle_id 0 0 0 0 1 %}>-</option>
+{% if subtitle_id != 0 %}
+{% for t in subsubtitle_list %}
+{% if t.0 == subsubtitle_id %}
+<option selected="selected" value={% url 'diary' title_id subtitle_id t.0 0 0 0 1 %}>{{ t.1 }}</option>
+{% elif t.1 != '' %}
+<option value={% url 'diary' title_id subtitle_id t.0 0 0 0 1 %}>{{ t.1 }}</option>
 {% endif %}
 {% endfor %}
 {% endif %}
 </select>
 
 <select onChange="top.location.href=value">
-<option value={% url 'diary' title_id subtitle_id 0 month day 1 %}>-</option>
+<option value={% url 'diary' title_id subtitle_id subsubtitle_id 0 month day 1 %}>-</option>
 {% for y in year_list %}
 {% if y == year %}
-<option selected="selected" value={% url 'diary' title_id subtitle_id  y month day 1 %}>{{ y }}</option>
+<option selected="selected" value={% url 'diary' title_id subtitle_id subsubtitle_id  y month day 1 %}>{{ y }}</option>
 {% else %}
-<option value={% url 'diary' title_id subtitle_id y month day 1 %}>{{ y }}</option>
+<option value={% url 'diary' title_id subtitle_id subsubtitle_id y month day 1 %}>{{ y }}</option>
 {% endif %}
 {% endfor %}
 </select>年
 
 <select onChange="top.location.href=value">
-<option value={% url 'diary' title_id subtitle_id year 0 day 1 %}>-</option>
+<option value={% url 'diary' title_id subtitle_id subsubtitle_id year 0 day 1 %}>-</option>
 {% for m in month_list %}
 {% if m == month and month != 0 %}
-<option selected="selected" value={% url 'diary' title_id subtitle_id year m day 1 %}>{{ m }}</option>
+<option selected="selected" value={% url 'diary' title_id subtitle_id subsubtitle_id year m day 1 %}>{{ m }}</option>
 {% elif 1 <= m and m <= 12 %}
-<option value={% url 'diary' title_id subtitle_id year m day 1 %}>{{ m }}</option>
+<option value={% url 'diary' title_id subtitle_id subsubtitle_id year m day 1 %}>{{ m }}</option>
 {% endif %}
 {% endfor %}
 </select>月
 
 <select onChange="top.location.href=value">
-<option value={% url 'diary' title_id subtitle_id year month 0 1 %}>-</option>
+<option value={% url 'diary' title_id subtitle_id subsubtitle_id year month 0 1 %}>-</option>
 {% for d in day_list %}
 {% if d == day and day != 0 %}
-<option selected="selected" value={% url 'diary' title_id subtitle_id year month d 1 %}>{{ d }}</option>
+<option selected="selected" value={% url 'diary' title_id subtitle_id subsubtitle_id year month d 1 %}>{{ d }}</option>
 {% elif 1 <= d and d <= 31 %}
-<option value={% url 'diary' title_id subtitle_id year month d 1 %}>{{ d }}</option>
+<option value={% url 'diary' title_id subtitle_id subsubtitle_id year month d 1 %}>{{ d }}</option>
 {% endif %}
 {% endfor %}
 </select>日
@@ -74,7 +87,7 @@
 {% if 1 < page_len %}
 <p>
 {% if prev_page != -1 %}
-<a href={% url 'diary' title_id subtitle_id year month day prev_page %}>prev</a> |
+<a href={% url 'diary' title_id subtitle_id subsubtitle_id year month day prev_page %}>prev</a> |
 {% else %}
 prev
 {% endif %}
@@ -82,11 +95,11 @@ prev
 {% if p.no == page %}
 {{ p.no }} |
 {% else %}
-<a href={% url 'diary' title_id subtitle_id year month day p.no %}>{{ p.no }}</a> | 
+<a href={% url 'diary' title_id subtitle_id subsubtitle_id year month day p.no %}>{{ p.no }}</a> | 
 {% endif %}
 {% endfor %}
 {% if next_page != -1 %}
-<a href={% url 'diary' title_id subtitle_id year month day next_page %}>next</a>
+<a href={% url 'diary' title_id subtitle_id subsubtitle_id year month day next_page %}>next</a>
 {% else %}
 next
 {% endif %}
@@ -121,8 +134,10 @@ next
       {% for d in diary %}
       {% if d.subtitle_text == '' %}
       <dt class="date">{{ d.date_text}}</dt>
+      {% elif d.subsubtitle_text == '' %}
+      <dt class="date">{{ d.date_text}} : {{ d.subtitle_text }}</dt>
       {% else %}
-      <dt class="date">{{ d.date_text}} - {{ d.subtitle_text }}</dt>
+      <dt class="date">{{ d.date_text}} : {{ d.subtitle_text }} {{ d.subsubtitle_text }}</dt>
       {% endif %}
       <dd><p>
         {{ d.text|safe }}
@@ -136,7 +151,7 @@ next
 {% if 1 < page_len %}
 <p>
 {% if prev_page != -1 %}
-<a href={% url 'diary' title_id subtitle_id year month day prev_page %}>prev</a> |
+<a href={% url 'diary' title_id subtitle_id subsubtitle_id year month day prev_page %}>prev</a> |
 {% else %}
 prev
 {% endif %}
@@ -144,11 +159,11 @@ prev
 {% if p.no == page %}
 {{ p.no }} |
 {% else %}
-<a href={% url 'diary' title_id subtitle_id year month day p.no %}>{{ p.no }}</a> | 
+<a href={% url 'diary' title_id subtitle_id subsubtitle_id year month day p.no %}>{{ p.no }}</a> | 
 {% endif %}
 {% endfor %}
 {% if next_page != -1 %}
-<a href={% url 'diary' title_id subtitle_id year month day next_page %}>next</a>
+<a href={% url 'diary' title_id subtitle_id subsubtitle_id year month day next_page %}>next</a>
 {% else %}
 next
 {% endif %}
