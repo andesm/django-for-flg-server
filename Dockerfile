@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-RUN apt-get -o Acquire::Check-Valid-Until=false updat && \
+RUN apt-get -o Acquire::Check-Valid-Until=false update && \
         apt-get -y install python3 python3-pip pandoc 
 WORKDIR /django
 COPY . /django
