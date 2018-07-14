@@ -1,6 +1,6 @@
 Django
 psycopg2
-sycopg2-binary
+psycopg2-binary
 djangorestframework
 markdown
 django-filter
