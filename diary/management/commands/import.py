@@ -28,7 +28,7 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         title_id = {}
-        with open('/flg/home/andesm/data/diary/config.yml') as f:
+        with open('/flg/home/andesm/diary/config.yml') as f:
             for t in yaml.load(f):
                 title_id[t['title']] = t['id']
         Diary.objects.all().delete()
@@ -46,7 +46,7 @@ class Command(BaseCommand):
         pic_count = subtitle_id_n = subsubtitle_id_n = 0
         ddiv = False
 
-        with open('/flg/home/andesm/data/diary/diary.md') as f:
+        with open('/flg/home/andesm/diary/diary.md') as f:
             line = f.readlines()
 
         for l in line:
