@@ -25,7 +25,7 @@ SECRET_KEY = 'cl+17tlv2el7yaibnes@8w57qa#66ia8k9*!0%(h@w-^3e49m^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'flg.jp', 'kotetu.flg.jp']
+ALLOWED_HOSTS = ['localhost', 'flg.jp', 'kotetu.flg.jp', 'openshift.flg.jp']
 
 # Application definition
 
