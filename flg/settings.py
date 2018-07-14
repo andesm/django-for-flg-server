@@ -127,7 +127,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = '/flg/srv/http/django/apps/static'
+STATIC_ROOT = '/flg/srv/http/django/'
 STATIC_URL = '/apps/static/'
-
 
