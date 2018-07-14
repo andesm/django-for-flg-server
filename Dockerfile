@@ -1,2 +1,2 @@
-FROM ubuntu:18.04
+FROM ubuntu
 CMD tail -f /dev/null
