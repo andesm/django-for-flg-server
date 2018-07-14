@@ -1,4 +1,6 @@
+Django
 psycopg2
+sycopg2-binary
 djangorestframework
 markdown
 django-filter
@@ -8,7 +10,6 @@ PyYAML
 pypandoc
 requests
 requests_oauthlib
-Django
 
 
 

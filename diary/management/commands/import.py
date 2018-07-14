@@ -139,7 +139,7 @@ class Command(BaseCommand):
     def _import_tweet(self, title_id):
         diary = {}
 
-        with open('/home/andesm/data/diary/tweets.csv') as f:
+        with open('/flg/home/andesm/diary/tweets.csv') as f:
             for rows in reversed(list(csv.reader(f))):
                 m =re.search(r'(\d\d)(\d\d)(\d\d) ', rows[1])
                 if m:

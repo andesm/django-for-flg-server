@@ -250,7 +250,7 @@ items:
           env:
           - name: POSTGRES_PASSWORD
             value: postgres
-            name: POSTGRES_DB
+          - name: POSTGRES_DB
             value: django
           volumeMounts:
           - name: nfs-share
