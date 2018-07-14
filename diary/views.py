@@ -15,7 +15,7 @@ def diaryView(request, title_id, subtitle_id, subsubtitle_id, year, month, day, 
     subtitle_id = int(subtitle_id)
     subsubtitle_id = int(subsubtitle_id)
     page_no = int(page_no)
-    f = open('/home/andesm/diary/config.yml')
+    f = open('/flg/home/andesm/diary/config.yml')
     title_list = yaml.load(f)
     q = {}
 
