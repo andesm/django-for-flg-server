@@ -102,14 +102,21 @@ items:
         labels:
           app: django-for-flg-server
           deploymentconfig: django-for-flg-server
-          ports:
-          - containerPort: 10080
-            protocol: TCP
       spec:
         containers:
         - image: django-for-flg-server:latest
           name: django-for-flg-server
           resources: {}
+          ports:
+          - containerPort: 10080
+            protocol: TCP
+          volumeMounts:
+          - name: nfs-share
+            mountPath: /flg
+        volumes:
+        - name: nfs-share
+          persistentVolumeClaim:
+            claimName: nfs-pvc
     test: false
     triggers:
     - type: ConfigChange
@@ -148,5 +155,35 @@ items:
       deploymentconfig: django-for-flg-server
   status:
     loadBalancer: {}
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    creationTimestamp: '2018-07-14T01:33:23Z'
+    labels:
+      app: django-for-flg-server
+    name: django-for-flg-server
+    namespace: flg
+    resourceVersion: '166845'
+    selfLink: /apis/route.openshift.io/v1/namespaces/flg/routes/django-for-flg-server
+    uid: e5f8f65c-8705-11e8-a003-000c29e709e7
+  spec:
+    host: openshift.flg.jp
+    path: /apps
+    port:
+      targetPort: 10080-tcp
+    to:
+      kind: Service
+      name: django-for-flg-server
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+      - conditions:
+          - lastTransitionTime: '2018-07-14T01:33:23Z'
+            status: 'True'
+            type: Admitted
+        host: openshift.flg.jp
+        routerName: router
+        wildcardPolicy: None
 kind: List
 metadata: {}
