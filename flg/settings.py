@@ -129,4 +129,7 @@ USE_TZ = True
 
 STATIC_ROOT = '/flg/srv/http/django/'
 STATIC_URL = '/apps/static/'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/flg/srv/http/django/',
+]
