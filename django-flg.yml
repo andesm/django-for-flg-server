@@ -1,0 +1,129 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: django-for-flg-server
+    name: ubuntu
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: ubuntu:18.04
+      from:
+        kind: DockerImage
+        name: ubuntu:18.04
+      generation: null
+      importPolicy: {}
+      name: "18.04"
+      referencePolicy:
+        type: ""
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: django-for-flg-server
+    name: django-for-flg-server
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: django-for-flg-server
+    name: django-for-flg-server
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: django-for-flg-server:latest
+    postCommit: {}
+    resources: {}
+    source:
+      git:
+        uri: https://github.com/andesm/django-for-flg-server
+      type: Git
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: ubuntu:18.04
+      type: Docker
+    triggers:
+    - github:
+        secret: n72AJ9cdTKJJ4vAJcqod
+      type: GitHub
+    - generic:
+        secret: kcZ-ZhmsJjZdJk7gBWYi
+      type: Generic
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+  status:
+    lastVersion: 0
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: django-for-flg-server
+    name: django-for-flg-server
+  spec:
+    replicas: 1
+    selector:
+      app: django-for-flg-server
+      deploymentconfig: django-for-flg-server
+    strategy:
+      resources: {}
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: django-for-flg-server
+          deploymentconfig: django-for-flg-server
+      spec:
+        containers:
+        - image: django-for-flg-server:latest
+          name: django-for-flg-server
+          resources: {}
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - django-for-flg-server
+        from:
+          kind: ImageStreamTag
+          name: django-for-flg-server:latest
+      type: ImageChange
+  status:
+    availableReplicas: 0
+    latestVersion: 0
+    observedGeneration: 0
+    replicas: 0
+    unavailableReplicas: 0
+    updatedReplicas: 0
+kind: List
+metadata: {}
