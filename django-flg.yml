@@ -102,6 +102,9 @@ items:
         labels:
           app: django-for-flg-server
           deploymentconfig: django-for-flg-server
+          ports:
+          - containerPort: 10080
+            protocol: TCP
       spec:
         containers:
         - image: django-for-flg-server:latest
@@ -125,5 +128,25 @@ items:
     replicas: 0
     unavailableReplicas: 0
     updatedReplicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: django-for-flg-server
+    name: django-for-flg-server
+  spec:
+    ports:
+    - name: 10080-tcp
+      port: 10080
+      protocol: TCP
+      targetPort: 10080
+    selector:
+      app: django-for-flg-server
+      deploymentconfig: django-for-flg-server
+  status:
+    loadBalancer: {}
 kind: List
 metadata: {}
