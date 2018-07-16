@@ -167,7 +167,7 @@ items:
     selfLink: /apis/route.openshift.io/v1/namespaces/flg/routes/django-for-flg-server
     uid: e5f8f65c-8705-11e8-a003-000c29e709e7
   spec:
-    host: openshift.flg.jp
+    host: flg.jp
     path: /apps
     port:
       targetPort: 10080-tcp
@@ -182,7 +182,7 @@ items:
           - lastTransitionTime: '2018-07-14T01:33:23Z'
             status: 'True'
             type: Admitted
-        host: openshift.flg.jp
+        host: flg.jp
         routerName: router
         wildcardPolicy: None
 kind: List
