@@ -50,7 +50,7 @@ class RmpViewSet(viewsets.ModelViewSet):
                                   % (rmp.file, rmp.id, rmp.count, rmp.skip))
 
     def get_ranking(self, target_rmp):
-        rmp_datalist = Rmp.objects.all()
+        rmp_data_list = Rmp.objects.all()
         sorted_rmp_data_list = sorted(rmp_data_list,
                                       key=lambda rmp: rmp.score,
                                       reverse=True)
