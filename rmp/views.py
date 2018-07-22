@@ -33,7 +33,7 @@ class RmpViewSet(viewsets.ModelViewSet):
         if serializer.validated_data['file'] == rmp.file:
             serializer.save()
             if rmp.repeat < serializer.initial_data['repeat']:
-                rank, total = get_ranking(rmp)
+                rank, total = self.get_ranking(rmp)
                 header = '#NowPlaying My favorite song (%4d/%4d) : ' % (rank, total)
                 url = 'https://api.twitter.com/1.1/statuses/update.json'
                 auth = OAuth1('conLX2R3H4YcACfiHlgXxRmXX',
