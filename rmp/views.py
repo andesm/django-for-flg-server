@@ -32,19 +32,19 @@ class RmpViewSet(viewsets.ModelViewSet):
         rmp = Rmp.objects.get(id=serializer.initial_data['id'])
         if serializer.validated_data['file'] == rmp.file:
             serializer.save()
-            if rmp.repeat < serializer.initial_data['repeat']:
-                rank, total = self.get_ranking(rmp)
-                header = '#NowPlaying My favorite song (%4d/%4d) : ' % (rank, total)
-                url = 'https://api.twitter.com/1.1/statuses/update.json'
-                auth = OAuth1('conLX2R3H4YcACfiHlgXxRmXX',
-                              'vtIzbAelUtCWEmozRU1wczZkYjRGHzbSsLoHGxzsHQG59KfldO',
-                              '94802117-HsUE95ZnUmC1frrAJzZjgx2VwDT9VvKrTg68JMuRH',
-                              'X0Jzcv0OVAhHLWCcGSe9lA5u4b1ty70DSrfrPdbvk0Ccg')
-                song = serializer.initial_data['file'].rstrip('.m4a')
-                song = re.sub(r'\/[\d-]+ ', '/', song)
-                song = re.sub(r'\/', ' / ', song)
-                payload = {'status': header + song}
-                requests.post(url, auth=auth, data=payload)
+            #if rmp.repeat < serializer.initial_data['repeat']:
+            #    rank, total = self.get_ranking(rmp)
+            #    header = '#NowPlaying My favorite song (%4d/%4d) : ' % (rank, total)
+            #    url = 'https://api.twitter.com/1.1/statuses/update.json'
+            #    auth = OAuth1('conLX2R3H4YcACfiHlgXxRmXX',
+            #                  'vtIzbAelUtCWEmozRU1wczZkYjRGHzbSsLoHGxzsHQG59KfldO',
+            #                  '94802117-HsUE95ZnUmC1frrAJzZjgx2VwDT9VvKrTg68JMuRH',
+            #                  'X0Jzcv0OVAhHLWCcGSe9lA5u4b1ty70DSrfrPdbvk0Ccg')
+            #    song = serializer.initial_data['file'].rstrip('.m4a')
+            #    song = re.sub(r'\/[\d-]+ ', '/', song)
+            #    song = re.sub(r'\/', ' / ', song)
+            #    payload = {'status': header + song}
+            #    requests.post(url, auth=auth, data=payload)
         else:
             raise ValidationError('Mismatch ID? %s %d %d %d'
                                   % (rmp.file, rmp.id, rmp.count, rmp.skip))
