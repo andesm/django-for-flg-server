@@ -58,8 +58,8 @@ class Command(BaseCommand):
                     subsubtitle_id_n = subsubtitle_id_n + 1
                     subsubtitle_id[subsubtitle] = subsubtitle_id_n
 
-                #html = pypandoc.convert(text, 'html', format='markdown+east_asian_line_breaks')
-                html = pypandoc.convert(text, 'html', format='markdown')
+                html = pypandoc.convert(text, 'html', format='markdown+east_asian_line_breaks')
+                #html = pypandoc.convert(text, 'html', format='markdown')
                 html = re.sub(r'(<img src="(.*?\d+).jpg" />)', r'<a href="\2l.jpg">\1</a>', html)
                 diary.append({'year': year, 'month': month, 'day': day,
                               'date_text': date_text,
