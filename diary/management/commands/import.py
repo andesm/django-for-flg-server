@@ -153,7 +153,7 @@ class Command(BaseCommand):
                     continue
                 title = 'つぶやき'
                 #html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
-                html = '<li>' + rows[0] + '\n'
+                html = '<li>' + rows[1] + '\n'
 
                 if diary_date in diary:
                     diary[diary_date]['text'] = diary[diary_date]['text'] + html
