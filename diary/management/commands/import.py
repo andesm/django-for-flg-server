@@ -32,7 +32,7 @@ class Command(BaseCommand):
             for t in yaml.load(f, Loader=yaml.FullLoader):
                 title_id[t['title']] = t['id']
         Diary.objects.all().delete()
-        #self._import_markdown(title_id)
+        self._import_markdown(title_id)
         self._import_tweet(title_id)
 
     def _import_markdown(self, title_id):
