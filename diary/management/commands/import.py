@@ -174,6 +174,6 @@ class Command(BaseCommand):
                                          'text': '<ul>' + html}
 
         for c in sorted(diary):
-            diary[c]['text'] = + "</ul>\n"
+            diary[c]['text'] = diary[c]['text'] + "</ul>\n"
             d = Diary(**diary[c])
             d.save()
