@@ -156,6 +156,7 @@ class Command(BaseCommand):
                 #html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
                 html = '<li>' + rows[1] + '\n'
                 html = re.sub(r'(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)', r'<a href="\1">\1</a>', html)
+                html = re.sub(r'(@)(\w+)', r'<a href="https://twitter.com/\2">\1\2</a>', html)
 
                 if diary_date in diary:
                     diary[diary_date]['text'] = diary[diary_date]['text'] + html
