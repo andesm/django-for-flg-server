@@ -58,10 +58,9 @@ class Command(BaseCommand):
                     subsubtitle_id_n = subsubtitle_id_n + 1
                     subsubtitle_id[subsubtitle] = subsubtitle_id_n
 
+                text = re.sub(r'(https?://[^">\s]+)(\s|$)', r'<a href="\1">\1</a>\2', text)
                 html = pypandoc.convert_text(text, 'html', format='markdown+east_asian_line_breaks')
-                #html = pypandoc.convert(text, 'html', format='markdown')
                 html = re.sub(r'(<img src="(.*?\d+).jpg" />)', r'<a href="\2l.jpg">\1</a>', html)
-                html = re.sub(r'(^|[^"<])(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)([^">]|$)', r'<a href="\2">\2</a>', html)
                 diary.append({'year': year, 'month': month, 'day': day,
                               'date_text': date_text,
                               'diary_date': diary_date,
@@ -76,6 +75,7 @@ class Command(BaseCommand):
                               'ddiv': ddiv,
                               'pic_count': pic_count,
                               'text': html})
+                print(text)
                 text = ''
                 pic_count = 0
 
@@ -85,6 +85,7 @@ class Command(BaseCommand):
                 month = int(m.group(2))
                 day =  int(m.group(3))
                 if month == 0:
+
                     month = 1
                 if day  == 0:
                     day = 1
@@ -153,10 +154,9 @@ class Command(BaseCommand):
                 else:
                     continue
                 title = 'つぶやき'
-                #html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
                 html = '<li>' + rows[1] + '\n'
-                html = re.sub(r'(^|[^"<])(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)([^">]|$)', r'<a href="\2">\2</a>', html)
-                html = re.sub(r'(@)(\w+)', r'<a href="https://twitter.com/\2">\1\2</a>', html)
+                html = re.sub(r'(https?://[^">\s]+)(\s|$)', r'<a href="\1">\1</a>\2', html)
+                html = re.sub(r'@([a-zA-Z0-9_]+)', r'<a href="https://twitter.com/\2">@\2</a>', html)
 
                 if diary_date in diary:
                     diary[diary_date]['text'] = diary[diary_date]['text'] + html
