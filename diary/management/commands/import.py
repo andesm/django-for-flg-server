@@ -58,10 +58,10 @@ class Command(BaseCommand):
                     subsubtitle_id_n = subsubtitle_id_n + 1
                     subsubtitle_id[subsubtitle] = subsubtitle_id_n
 
-                html = pypandoc.convert(text, 'html', format='markdown+east_asian_line_breaks')
+                html = pypandoc.convert_text(text, 'html', format='markdown+east_asian_line_breaks')
                 #html = pypandoc.convert(text, 'html', format='markdown')
                 html = re.sub(r'(<img src="(.*?\d+).jpg" />)', r'<a href="\2l.jpg">\1</a>', html)
-                html = re.sub(r'(^|[^"])(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)([^"]|$)', r'<a href="\2">\2</a>', html)
+                html = re.sub(r'(^|[^"<])(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)([^">]|$)', r'<a href="\2">\2</a>', html)
                 diary.append({'year': year, 'month': month, 'day': day,
                               'date_text': date_text,
                               'diary_date': diary_date,
@@ -141,7 +141,7 @@ class Command(BaseCommand):
         diary = {}
 
         with open('/flg/home/andesm/diary/tweets.csv') as f:
-            for rows in reversed(list(csv.reader(f, delimiter='\t'))):
+            for rows in csv.reader(f, delimiter='\t'):
                 m =re.search(r'(\d\d\d\d)-(\d\d)-(\d\d)', rows[0])
                 if m:
                     year = int(m.group(1))
@@ -155,7 +155,7 @@ class Command(BaseCommand):
                 title = 'つぶやき'
                 #html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
                 html = '<li>' + rows[1] + '\n'
-                html = re.sub(r'(^|[^"])(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)([^"]|$)', r'<a href="\2">\2</a>', html)
+                html = re.sub(r'(^|[^"<])(https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)([^">]|$)', r'<a href="\2">\2</a>', html)
                 html = re.sub(r'(@)(\w+)', r'<a href="https://twitter.com/\2">\1\2</a>', html)
 
                 if diary_date in diary:
