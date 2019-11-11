@@ -32,10 +32,10 @@ class Command(BaseCommand):
             for t in yaml.load(f, Loader=yaml.FullLoader):
                 title_id[t['title']] = t['id']
         Diary.objects.all().delete()
-        self._import_markdown(title_id)
+        #self._import_markdown(title_id)
         self._import_tweet(title_id)
 
-    def _import_markdown(self, title_id ):
+    def _import_markdown(self, title_id):
         subtitle_id = {}
         subtitle_id[''] = 0
         subsubtitle_id = {}
@@ -140,8 +140,8 @@ class Command(BaseCommand):
         diary = {}
 
         with open('/flg/home/andesm/diary/tweets.csv') as f:
-            for rows in reversed(list(csv.reader(f))):
-                m =re.search(r'(\d\d\d\d)-(\d\d)-(\d\d) ', rows[0])
+            for rows in reversed(list(csv.reader(f, delimiter='\t'))):
+                m =re.search(r'(\d\d\d\d)-(\d\d)-(\d\d)', rows[0])
                 if m:
                     year = int(m.group(1))
                     month = int(m.group(2))
@@ -153,7 +153,7 @@ class Command(BaseCommand):
                     continue
                 title = 'つぶやき'
                 #html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
-                html = "<li>" + rows[0] + "\n"
+                html = '<li>' + rows[0] + '\n'
 
                 if diary_date in diary:
                     diary[diary_date]['text'] = diary[diary_date]['text'] + html
@@ -171,8 +171,9 @@ class Command(BaseCommand):
                                          'subsubtitle_text': '',
                                          'ddiv': False,
                                          'pic_count': 1,
-                                         'text': html}
-                    
+                                         'text': '<ul>' + html}
+
         for c in sorted(diary):
+            diary[c]['text'] = + "</ul>\n"
             d = Diary(**diary[c])
             d.save()
