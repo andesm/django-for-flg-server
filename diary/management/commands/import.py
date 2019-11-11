@@ -29,7 +29,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         title_id = {}
         with open('/flg/home/andesm/diary/config.yml') as f:
-            for t in yaml.load(f):
+            for t in yaml.load(f, Loader=yaml.FullLoader):
                 title_id[t['title']] = t['id']
         Diary.objects.all().delete()
         self._import_markdown(title_id)
@@ -141,9 +141,9 @@ class Command(BaseCommand):
 
         with open('/flg/home/andesm/diary/tweets.csv') as f:
             for rows in reversed(list(csv.reader(f))):
-                m =re.search(r'(\d\d)(\d\d)(\d\d) ', rows[1])
+                m =re.search(r'(\d\d\d\d)-(\d\d)-(\d\d) ', rows[0])
                 if m:
-                    year = int(m.group(1)) + 2000
+                    year = int(m.group(1))
                     month = int(m.group(2))
                     day = int(m.group(3))
                     diary_date = date(year, month ,day)
@@ -152,10 +152,10 @@ class Command(BaseCommand):
                 else:
                     continue
                 title = 'つぶやき'
-                html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
+                #html = '<blockquote class="twitter-tweet" data-lang="ja" data-cards="hidden"><p lang="ja" dir="ltr">' + rows[2] + '<a href="https://twitter.com/andesm/status/' + rows[0] + '">' + date_text + '</a></blockquote>\n'
+                html = "<li>" + rows[0] + "\n"
 
                 if diary_date in diary:
-                    diary[diary_date]['pic_count'] = diary[diary_date]['pic_count'] + 1
                     diary[diary_date]['text'] = diary[diary_date]['text'] + html
                 else:
                     diary[diary_date] = {'year': year, 'month': month, 'day': day,
@@ -174,6 +174,5 @@ class Command(BaseCommand):
                                          'text': html}
                     
         for c in sorted(diary):
-            diary[c]['text'] = '<div class="twitter-tweet-box">\n' + diary[c]['text'] + "</div>\n"
             d = Diary(**diary[c])
             d.save()
