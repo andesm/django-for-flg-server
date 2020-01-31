@@ -75,7 +75,6 @@ class Command(BaseCommand):
                               'ddiv': ddiv,
                               'pic_count': pic_count,
                               'text': html})
-                print(text)
                 text = ''
                 pic_count = 0
 
@@ -156,7 +155,7 @@ class Command(BaseCommand):
                 title = 'つぶやき'
                 html = '<li>' + rows[1] + '\n'
                 html = re.sub(r'(https?://[^">\s]+)(\s|$)', r'<a href="\1">\1</a>\2', html)
-                html = re.sub(r'@([a-zA-Z0-9_]+)', r'<a href="https://twitter.com/\2">@\2</a>', html)
+                html = re.sub(r'@([a-zA-Z0-9_]+)', r'<a href="https://twitter.com/\1">@\1</a>', html)
 
                 if diary_date in diary:
                     diary[diary_date]['text'] = diary[diary_date]['text'] + html
