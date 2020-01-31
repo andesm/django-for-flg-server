@@ -2,11 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 import yaml
+import datetime
 from diary.models import Diary
 from django.http import HttpResponse
 
 def indexView(request):
-    return diaryView(request, 'all', 0, 0, 0, 0, 0, 1)
+    month = datetime.date.today().month
+    day = datetime.date.today().day
+    return diaryView(request, 'all', 0, 0, 0, month, day, 1)
 
 def diaryView(request, title_id, subtitle_id, subsubtitle_id, year, month, day, page_no):
     year = int(year)
@@ -44,7 +47,7 @@ def diaryView(request, title_id, subtitle_id, subsubtitle_id, year, month, day, 
     if day != 0:
         q['day'] = day
 
-    if subtitle_id == 0 and subsubtitle_id == 0 and year == 0 and month == 0 and day == 0:
+    if subtitle_id == 0 and subsubtitle_id == 0 and year == 0:
         diary = Diary.objects.filter(**q).order_by('-diary_date', 'title_id')
     else:
         diary = Diary.objects.filter(**q).order_by('diary_date', 'title_id')
@@ -89,7 +92,7 @@ def diaryView(request, title_id, subtitle_id, subsubtitle_id, year, month, day, 
             if d.date_text not in vd:
                 vd[d.date_text] = []
             vd[d.date_text].append(d)
-        if subtitle_id == 0 and subsubtitle_id == 0 and year == 0 and month == 0 and day == 0:
+        if subtitle_id == 0 and subsubtitle_id == 0 and year == 0:
             for d in sorted(vd, reverse=True):
                 view_diary.append({'date_text': d, 'diary': vd[d]})
         else:
