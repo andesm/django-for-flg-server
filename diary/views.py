@@ -3,12 +3,14 @@ from django.shortcuts import render
 # Create your views here.
 import yaml
 import datetime
+import pytz
 from diary.models import Diary
 from django.http import HttpResponse
 
 def indexView(request):
-    month = datetime.date.today().month
-    day = datetime.date.today().day
+    now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
+    month = now.month
+    day = now.day
     return diaryView(request, 'all', 0, 0, 0, month, day, 1)
 
 def diaryView(request, title_id, subtitle_id, subsubtitle_id, year, month, day, page_no):
