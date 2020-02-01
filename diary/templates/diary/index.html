@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{% static 'diary/index.css' %}">
-<title>AndesMの近況</title>
+<title>AndesMの10年日記</title>
 </head>
 
 <body>
@@ -81,7 +81,7 @@
 {% endif %}
 {% endfor %}
 </select>日
- | <a href={% url 'index' %}>home</a>
+ | <a href={% url 'index' %}>10年日記</a> | <a href={% url 'diary' 'all' 0 0 0 0 0 1 %}>近況</a>
 </form>
 
 {% if 1 < page_len %}
@@ -169,8 +169,6 @@ next
 {% endif %}
 </p>
 {% endif %}
-
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 <hr />
 <address>andes@flg.jp</address>
